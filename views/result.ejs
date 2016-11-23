@@ -1,19 +1,43 @@
 <html>
 <head>
   <title>Classifier Results</title>
+  <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style>
 </head>
 <body>
 
 <img src="data: <%= mimetype %>;base64, <%= photo %>">
 <br>
 <% if (results.length == 0) { %>
-  <p>Unable to recognize objects in this photo!</p>
+  <p>Can't recognize objects in this photo!</p>
 <% } else { %>
-  <ol>
-  <% results.forEach(function(r) { %>
-  <li>Object: <b><%= r.class %></b>, Score: <b><%= r.score %></b></li>
-  <% }); %>
-  </ol>
+  <table>
+    <tr>
+      <th>Class</th>
+      <th>Class Hierarchy</th>
+      <th>Score (max 1.0)</th>
+    <tr>
+    <% results.forEach(function(r) { %>
+    <tr>
+      <td><%= r.class %></td>
+      <td><%= r.type_hierarchy %></td>
+      <td><%= r.score %></td>
+    </tr>
+    <% }); %>
+  </table>
 <% } %>
 </body>
 </html>
