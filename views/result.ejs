@@ -7,7 +7,7 @@
 <img src="data: <%= mimetype %>;base64, <%= photo %>">
 <br>
 <% if (results.length == 0) { %>
-  <p>Can't recognize objects in this photo!</p>
+  <p>Unable to recognize objects in this photo!</p>
 <% } else { %>
   <ol>
   <% results.forEach(function(r) { %>
